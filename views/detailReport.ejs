@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+      * {
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+    .container {
+      margin: 50%;
+      height: fit-content;
+      padding: 50px;
+      border-radius: 12px;
+      background-color: #fff;
+      box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+    }
+    textarea {
+      border-top-style: hidden;
+      border-right-style: hidden;
+      border-left-style: hidden;
+      border-bottom-style: hidden;
+      background-color: rgb(255, 255, 255);
+    }
+      
+    .no-outline:focus {
+      outline: none;
+    }
+</style>
+<body>
+  <h1 style="text-align: center">BREAKING NEWS</h1><br>
+  <div style="display:flex; justify-content:center">
+    <div class="container" style="display:flex; margin: 20px">
+      <form action="/reports/<%= report.id %>/detail" method="get">
+        <p><b><%=report.title%></b></p><br>
+        <p><b>Writer: </b><%=report.User.userName%></p><br>
+        <p></p>
+        <textarea class="no-outline" cols="117" rows="25" style=" width:960px; height: 350px; white-space: pre-line;"><%= report.description %></textarea><br>
+      <p><b>Last Update: </b><%= report.updatedAt%></p><br>
+    </form>
+  </div>
+</div>
+<button style="margin-left:50px; padding:5px;font-size:100%; background-color:rgba(7, 231, 247, 0.877);"><a style="text-decoration:none"  href="/reports">report</a></button>
+</body>
+</html>

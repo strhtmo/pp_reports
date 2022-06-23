@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+  }
+
+  form {
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  li {
+  border: 1px solid rgb(177, 166, 71);
+  margin-top: -1px;
+  margin-left: 500px;
+  margin-right: 500px;
+  background-color: #fffaca;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  color: rgb(92, 76, 4);
+  display: block;
+  position: relative;
+}
+  .close {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 0%;
+  padding: 12px 16px;
+  transform: translate(0%, -50%);
+  }
+
+  .close:hover {background: rgb(226, 224, 94);}
+  </style>
+<body>
+  <br>
+  <h1 style="text-align: center">List Report</h1>
+  <form action="/reports">
+    <input type="text" name="search">
+    <input type="submit" value="Search">
+</form>
+  <div>
+    <a style="color:red" href='/reports/add'><button style="background-color:red; padding: 8px; color:white; margin-left: 1000px;">Add</button></a>
+    <table style="display:flex; justify-content:center; margin: 20px"> 
+      <tr>
+        <th style="border-bottom: 1px solid black;">Title</th>
+        <th style="border-bottom: 1px solid black;">Topic</th>
+      </tr>
+      <tr>
+        <% reports.forEach(el => { %>
+          <td style="padding: 10px; padding-right: 50px; border-bottom: 1px groove;"><%= el.title%></td>
+          <td style="padding: 10px; padding-right: 50px; border-bottom: 1px groove;""><%= el.topic%></td>
+          <td style="padding: 10px; padding-right: 50px; border-bottom: 1px groove;">
+            <a href="/reports/<%= el.id%>/detail"><button style="background-color:green; padding: 8px; color:white">See Detail</button></a>
+            <a style="color:red" href='/reports/<%= el.id%>/delete'><button style="background-color:red; padding: 8px; color:white">Delete</button></a>
+          </td>
+        </tr>
+        <% }) %>
+      </table>
+    </div>
+    </body>
+</html>

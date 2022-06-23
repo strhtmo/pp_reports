@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Add News</title>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+    .container {
+      width: 50%;
+      height: fit-content;
+      padding: 50px;
+      border-radius: 12px;
+      background-color: #fff;
+      box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+    }
+    .form-add>input,
+    .form-add>select {
+      margin: 5px 0px;
+      padding: 5px;
+      width: 100%;
+      height: 40px;
+      border-radius: 5px;
+      border: solid 1px gray;
+    }
+    form div {
+      display: flex; 
+      justify-content: center;
+    }
+    input[type=button], input[type=submit]{
+      width: 100px;
+      height: 30px;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      background-color: rgb(0, 0, 0);
+    }
+    
+  </style>
+</head>
+<body>
+  <div style="display:flex; justify-content:center; margin: 20px">
+    <div class="container">
+      <form action="/reports/add" method="post" class="form-add">
+        <h1 style="text-align: center">Form News</h1>
+        <label>Title</label><br>
+        <input type="text" placeholder="Title" name="title"><br>
+        <label>Image Url</label><br>
+        <input type="text" placeholder="imgUrl" name="imgUrl"><br>
+        <label >Topic</label><br>
+        <input type="text" placeholder="Topic" name="topic"><br>
+        <label>Description</label><br>
+        <input type="text" placeholder="Description" name="description"><br>
+        <label>Writer</label><br>
+        <select name = "UserId" id="">
+            <option selected disabled>---SELECT ONE---</option>
+            <% data.forEach(el => { %>
+              <option value="<%= el.id %>"><%= el.userName %></option>
+              <% }) %>
+          </select> <br>
+        <div>
+          <input type="submit" value="Submit">
+          <a href="/reports" style="text-decoration: none;"><input type="button" value="Cancel"></a>
+        </div>
+      </form>
+      </div>
+  </div>
+</body>
+</html>
