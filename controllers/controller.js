@@ -123,13 +123,15 @@ class Controller {
 
   static postEdit(req, res){
     const { id } = req.params
-    // console.log(req.body)
-    const body = req.body
-    Report.update(body, {
-      where: { id: +id }
+    let report
+    // const UserId = req.params.userId
+    console.log(req.body);
+    const { title, imgUrl, topic, description, UserId} = req.body
+    Report.update({ title, imgUrl, topic, description, UserId} , {
+      where: {id}
     })
-    .then(result => {
-      res.redirect(`/reports/${+id}/detail`)
+    .then(user => {
+      res.redirect(`/reports/${+id}/detail/${UserId}`)
     })
     .catch(err => {
       if (err.name === 'SequelizeValidationError') {

@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     get cleanWords() {
       let filter = new Filter()
       filter.addWords('tolol', 'dongo', 'cuki', 'bego', 'kampret', 'bangsat', 'anjing'); // Add your own words
-      return filter.clean(this.description)
+      return filter.clean(this.description).toLocaleLowerCase()
     }
   }
   Report.init({
