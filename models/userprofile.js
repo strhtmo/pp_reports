@@ -16,6 +16,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "UserId"
       })
     }
+
+    get newFullname() {
+      return `${this.firstName} ${this.lastName}`
+    }
   }
 
   UserProfile.init({
@@ -24,23 +28,34 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notEmpty : {
-          msg: 'firstName is required'
+          msg: 'First Name is required'
         },
         notNull : {
-          msg: 'firstName is required'
+          msg: 'First Name is required'
         }
       }
     },
-    lastName: DataTypes.STRING,
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty : {
+          msg: 'Last Name is required'
+        },
+        notNull : {
+          msg: 'Last Name is required'
+        }
+      }
+    },
     age:  {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notEmpty : {
-          msg: 'age is required'
+          msg: 'Age is required'
         },
         notNull : {
-          msg: 'age is required'
+          msg: 'Age is required'
         }
       }
     },
@@ -49,10 +64,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notEmpty : {
-          msg: 'gender is required'
+          msg: 'Gender is required'
         },
         notNull : {
-          msg: 'gender is required'
+          msg: 'Gender is required'
         }
       }
     },

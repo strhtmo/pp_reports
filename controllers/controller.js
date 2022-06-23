@@ -1,7 +1,7 @@
 const { Report, User, UserProfile } = require('../models')
 const { Op } = require("sequelize");
 const bcrypt = require('bcryptjs');
-const formatDate = require('../helpers/formatter')
+const formatDate = require('../helpers/formatter');
 
 class Controller {
   static getHome(req, res) {
@@ -53,7 +53,7 @@ class Controller {
   }
 
   static createReport(req, res) {
-    const {error} = req.query
+    const { error } = req.query
     User.findAll()
       .then(data => {
         // res.send(data)
@@ -80,16 +80,23 @@ class Controller {
 
   static detailReport(req, res) {
     const { id } = req.params
+    const userId = +req.params.userId
+    // console.log(userId)
+    let report
 
-    Report.findOne({
-      include: [User],
-      where: +id
+    Report.findByPk(id)
+    .then((data)=>{
+      report = data
+      return User.findOne({
+        include: [UserProfile],
+        where: userId
+      })
     })
-      .then(report => {
-        res.render('detailReport', { report, formatDate })
+      .then(user => {
+        // res.send({user, report})
+        res.render('detailReport', { user, report, formatDate })
       })
       .catch(err => {
-
         res.send(err)
       })
   }
@@ -146,41 +153,9 @@ class Controller {
       })
   }
 
-  static login(req, res) {
-    const { error } = req.query
-    res.render('login-form', {error})
-  }
-
   static register(req, res) {
-    res.render('register-form')
-  }
-
-  static userProfile(req, res) {
-    User.findAll()
-      .then(data => {
-        res.render('userProfile', { data })
-      })
-      .catch(err => {
-        res.send(err)
-      })
-  }
-
-  static saveUserProfile(req, res) {
-    const { firstName, lastName, age, gender, UserId } = req.body
-
-    
-
-    UserProfile.create({ firstName, lastName, age, gender, UserId })
-      .then(data => {
-        res.redirect('/login')
-      })
-      .catch(err => {
-        if (err.name === 'SequelizeValidationError') {
-            res.send(err.errors.map(el => el.message))
-        } else {
-            res.send(err)
-        }
-    })
+    const { error } = req.query
+    res.render('register-form', {error})
   }
 
   static saveRegister(req, res) {
@@ -191,11 +166,43 @@ class Controller {
       })
       .catch(err => {
         if (err.name === 'SequelizeValidationError') {
-            res.send(err.errors.map(el => el.message))
-        } else {
-            res.send(err)
-        }
+          err = err.errors.map(el => el.message)
+      } else {
+        res.redirect(`/register?error=${err}`)
+      }
     })
+  }
+
+  static userProfile(req, res) {
+    const {error} = req.query
+    User.findAll()
+      .then(data => {
+        res.render('userProfile', { data, error })
+      })
+      .catch(err => {
+        res.send(err)
+      })
+  }
+
+  static saveUserProfile(req, res) {
+    const { firstName, lastName, age, gender, UserId } = req.body
+
+    UserProfile.create({ firstName, lastName, age, gender, UserId })
+      .then(data => {
+        res.redirect('/home')
+      })
+      .catch(err => {
+        if (err.name === 'SequelizeValidationError') {
+          err = err.errors.map(el => el.message)
+      } else {
+        res.redirect(`/register/userprofile?error=${err}`)
+      }
+    })
+  }
+  
+  static login(req, res) {
+    const { error } = req.query
+    res.render('login-form', {error})
   }
 
   static postLogin(req, res) {
@@ -234,18 +241,6 @@ class Controller {
       }
     })
   }
-
-  // static getUserProfile(req, res) {
-  //   User.findAll()
-  //   .then(data => {
-  //     res.send(data)
-  //     // res.render('user', { data })
-  //   })
-  //   .catch(err => {
-  //     res.send(err)
-  //   })
-  // }
-
 
 }
 

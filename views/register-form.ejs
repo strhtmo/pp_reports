@@ -67,6 +67,13 @@
           <input type="submit" value="Submit">
         </div>
       </form>
+      <% if (error) { %>
+        <% error.split(',').forEach(el => { %>
+          <p style="color: red"> 
+            <%= el %>
+          </p>
+          <% }) %>
+      <% } %>
       </div>
   </div>
 </body>

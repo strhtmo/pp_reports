@@ -38,12 +38,12 @@
   <h1 style="text-align: center">BREAKING NEWS</h1><br>
   <div style="display:flex; justify-content:center">
     <div class="container" style="display:flex; margin: 20px">
-      <form action="/reports/<%= report.id %>/detail" method="get">
+      <form action="/reports/<%= report.id %>/detail/<%= user.UserProfile.UserId%>" method="get">
         <p><b><%=report.title%></b></p><br>
-        <p><b>Writer: </b><%=report.User.userName%></p><br>
         <p></p>
         <textarea class="no-outline" cols="117" rows="25" style=" width:960px; height: 350px; white-space: pre-line;"><%= report.cleanWords %></textarea><br>
-      <p><b>Last Update: </b><%= formatDate(report.updatedAt) %></p><br>
+        <p><b>Last Update: </b><%= formatDate(report.updatedAt) %></p><br>
+        <p><b>Writer: </b><%=user.UserProfile.newFullname%></p><br>
     </form>
   </div>
 </div>

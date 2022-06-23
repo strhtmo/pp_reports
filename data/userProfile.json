@@ -1,0 +1,30 @@
+[
+    {
+        "firstName": "Satrio",
+        "lastName": "hutomo",
+        "gender": "male",
+        "age": 50,
+        "UserId": 1
+    },
+    {
+        "firstName": "Vira",
+        "lastName": "Agitta",
+        "gender": "female",
+        "age": 18,
+        "UserId": 2
+    },
+    {
+        "firstName": "Heru",
+        "lastName": "Bambang",
+        "gender": "male",
+        "age": 25,
+        "UserId": 3
+    },
+    {
+        "firstName": "Bambang",
+        "lastName": "Pamungkas",
+        "gender": "male",
+        "age": 20,
+        "UserId": 4
+    }
+]
