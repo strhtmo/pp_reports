@@ -103,7 +103,6 @@ class Controller {
 
   static getEdit(req, res){
     const { id } = req.params
-    const { error } = req.query
     let users 
 
     User.findAll()
@@ -114,7 +113,7 @@ class Controller {
       })
     })
     .then((report) => {
-      res.render('editReport', { users, report, error })
+      res.render('editReport', { users, report })
     })
     .catch(err => {
         res.send(err)
@@ -123,9 +122,7 @@ class Controller {
 
   static postEdit(req, res){
     const { id } = req.params
-    let report
-    // const UserId = req.params.userId
-    console.log(req.body);
+
     const { title, imgUrl, topic, description, UserId} = req.body
     Report.update({ title, imgUrl, topic, description, UserId} , {
       where: {id}
@@ -134,11 +131,7 @@ class Controller {
       res.redirect(`/reports/${+id}/detail/${UserId}`)
     })
     .catch(err => {
-      if (err.name === 'SequelizeValidationError') {
-        err = err.errors.map(el => el.message)
-    } else {
-      res.redirect(`/reports/${+id}/edit?error=${err}`)
-    }
+      res.send(err)
     })
   }
 
