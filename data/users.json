@@ -3,12 +3,24 @@
         "userName": "Satrio",
         "email": "satrio123@gmail.com",
         "password": "rahasia",
-        "role": "Admin"
+        "role": "admin"
     },
     {
         "userName": "Vira",
         "email": "vira123@gmail.com",
         "password": "rahasia",
-        "role": "user"
+        "role": "admin"
+    },
+    {
+        "userName": "Heru",
+        "email": "heru@gmail.com",
+        "password": "12345",
+        "role": "admin"
+    },
+    {
+        "userName": "Bambang",
+        "email": "bambang@gmail.com",
+        "password": "12345",
+        "role": "admin"
     }
 ]

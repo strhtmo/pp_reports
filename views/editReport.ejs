@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('partials/headTag', {title: 'Add News'}) %>
+  <%- include('partials/headTag', {title: 'Edit News'}) %>
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -49,21 +49,25 @@
   <%- include('partials/navBar') %>
   <div style="display:flex; justify-content:center; margin: 20px">
     <div class="container">
-      <form action="/reports/add" method="post" class="form-add">
-        <h1 style="text-align: center">Form News</h1>
+      <form action="/reports/<%= report.id %>/edit" method="post" class="form-add">
+        <h1 style="text-align: center">Form Edit News</h1>
         <label>Title</label><br>
-        <input type="text" placeholder="Title" name="title"><br>
+        <input type="text" placeholder="Title" name="title" value="<%= report.title %>"><br>
         <label>Image Url</label><br>
-        <input type="text" placeholder="imgUrl" name="imgUrl"><br>
+        <input type="text" placeholder="imgUrl" name="imgUrl" value="<%= report.imgUrl %>"><br>
         <label >Topic</label><br>
-        <input type="text" placeholder="Topic" name="topic"><br>
+        <input type="text" placeholder="Topic" name="topic" value="<%= report.topic %>"><br>
         <label>Description</label><br>
-        <textarea name="description" placeholder="description" class="no-outline" cols="117" rows="25" style=" width:598px; height: 350px; white-space: pre-line;"></textarea><br>
+        <textarea name="description" class="no-outline" cols="117" rows="25" style=" width:598px; height: 350px; white-space: pre-line;"><%= report.description %></textarea><br>
         <label>Writer</label><br>
         <select name = "UserId" id="">
             <option selected disabled>---SELECT ONE---</option>
-            <% data.forEach(el => { %>
-              <option value="<%= el.id %>"><%= el.userName %></option>
+            <% users.forEach(el => { %>
+            <% if(el.id == report.UserId){ %>
+                <option value="<%= el.id %>" selected><%= el.userName %></option>
+                <% } else { %>
+                  <option value="<%= el.id %>"><%= el.userName %></option>
+                  <% } %>
               <% }) %>
           </select> <br>
         <div>
@@ -78,7 +82,7 @@
           </p>
           <% }) %>
       <% } %>
-    </div>
+      </div>
   </div>
 </body>
 </html>

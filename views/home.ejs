@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+    <%- include('partials/headTag', {title: 'Homey'}) %>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .btn {
+            margin-left: 410px;
+            padding: 8px 0;
+            width: 120px;
+            text-align: center;
+            text-decoration: none;
+            text-size-adjust: 40px;
+            border-radius: 4px;
+            background-color: black;
+            color: white
+            ;
+        }
+        .header {
+            width: 90vw;
+            margin-left: 575px;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welkome to te club</h1>
-    <hr>
-    <button><a href="/users">User</a></button>
-    <button><a href="/reports">Reports</a></button>
+    <div class="header" >
+    <h1>Welcome to Detik News</h1>
+</div>
+    <a href="/register"><button class="btn">REGISTER</button></a>
+    <a href="/login"><button class="btn">LOGIN</button></a>
 </body>
 </html>

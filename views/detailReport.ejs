@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  <%- include('partials/headTag', {title: 'Detail News'}) %>
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,6 +34,7 @@
     }
 </style>
 <body>
+  <%- include('partials/navBar') %>
   <h1 style="text-align: center">BREAKING NEWS</h1><br>
   <div style="display:flex; justify-content:center">
     <div class="container" style="display:flex; margin: 20px">
@@ -40,11 +42,10 @@
         <p><b><%=report.title%></b></p><br>
         <p><b>Writer: </b><%=report.User.userName%></p><br>
         <p></p>
-        <textarea class="no-outline" cols="117" rows="25" style=" width:960px; height: 350px; white-space: pre-line;"><%= report.description %></textarea><br>
-      <p><b>Last Update: </b><%= report.updatedAt%></p><br>
+        <textarea class="no-outline" cols="117" rows="25" style=" width:960px; height: 350px; white-space: pre-line;"><%= report.cleanWords %></textarea><br>
+      <p><b>Last Update: </b><%= formatDate(report.updatedAt) %></p><br>
     </form>
   </div>
 </div>
-<button style="margin-left:50px; padding:5px;font-size:100%; background-color:rgba(7, 231, 247, 0.877);"><a style="text-decoration:none"  href="/reports">report</a></button>
 </body>
 </html>

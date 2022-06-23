@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('partials/headTag', {title: 'Add News'}) %>
+  <%- include('partials/headTag', {title: 'Register Detik News'}) %>
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,39 +46,28 @@
   </style>
 </head>
 <body>
-  <%- include('partials/navBar') %>
+  <%- include('partials/loginBar') %>
   <div style="display:flex; justify-content:center; margin: 20px">
     <div class="container">
-      <form action="/reports/add" method="post" class="form-add">
-        <h1 style="text-align: center">Form News</h1>
-        <label>Title</label><br>
-        <input type="text" placeholder="Title" name="title"><br>
-        <label>Image Url</label><br>
-        <input type="text" placeholder="imgUrl" name="imgUrl"><br>
-        <label >Topic</label><br>
-        <input type="text" placeholder="Topic" name="topic"><br>
-        <label>Description</label><br>
-        <textarea name="description" placeholder="description" class="no-outline" cols="117" rows="25" style=" width:598px; height: 350px; white-space: pre-line;"></textarea><br>
-        <label>Writer</label><br>
-        <select name = "UserId" id="">
+      <form action="/register" method="post" class="form-add">
+        <h1 style="text-align: center">Register</h1>
+        <label>Username</label><br>
+        <input type="text" placeholder="username" name="userName"><br>
+        <label>email</label><br>
+        <input type="text" placeholder="email" name="email"><br>
+        <label >password</label><br>
+        <input type="text" placeholder="password" name="password"><br>
+        <label>role</label><br>
+        <select name = "role" id="">
             <option selected disabled>---SELECT ONE---</option>
-            <% data.forEach(el => { %>
-              <option value="<%= el.id %>"><%= el.userName %></option>
-              <% }) %>
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
           </select> <br>
         <div>
           <input type="submit" value="Submit">
-          <a href="/reports" style="text-decoration: none;"><input type="button" value="Cancel"></a>
         </div>
       </form>
-      <% if (error) { %>
-        <% error.split(',').forEach(el => { %>
-          <p style="color: red"> 
-            <%= el %>
-          </p>
-          <% }) %>
-      <% } %>
-    </div>
+      </div>
   </div>
 </body>
 </html>

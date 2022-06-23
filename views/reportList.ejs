@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  <%- include('partials/headTag', {title: 'List News'}) %>
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,6 +45,7 @@
   .close:hover {background: rgb(226, 224, 94);}
   </style>
 <body>
+  <%- include('partials/navBar') %>
   <br>
   <h1 style="text-align: center">List Report</h1>
   <form action="/reports">
@@ -51,7 +53,7 @@
     <input type="submit" value="Search">
 </form>
   <div>
-    <a style="color:red" href='/reports/add'><button style="background-color:red; padding: 8px; color:white; margin-left: 1000px;">Add</button></a>
+    <a style="color:black" href='/reports/add'><button style="background-color:black; padding: 8px; color:white; margin-left: 1000px;">Add</button></a>
     <table style="display:flex; justify-content:center; margin: 20px"> 
       <tr>
         <th style="border-bottom: 1px solid black;">Title</th>
@@ -63,6 +65,7 @@
           <td style="padding: 10px; padding-right: 50px; border-bottom: 1px groove;""><%= el.topic%></td>
           <td style="padding: 10px; padding-right: 50px; border-bottom: 1px groove;">
             <a href="/reports/<%= el.id%>/detail"><button style="background-color:green; padding: 8px; color:white">See Detail</button></a>
+            <a style="color:red" href='/reports/<%= el.id%>/edit'><button style="background-color:rgb(0, 17, 255); padding: 8px; color:white">Edit</button></a>
             <a style="color:red" href='/reports/<%= el.id%>/delete'><button style="background-color:red; padding: 8px; color:white">Delete</button></a>
           </td>
         </tr>
