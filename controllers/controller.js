@@ -184,6 +184,7 @@ class Controller {
 
     UserProfile.create({ firstName, lastName, age, gender, UserId })
       .then(data => {
+        // res.send(data)
         res.redirect('/home')
       })
       .catch(err => {

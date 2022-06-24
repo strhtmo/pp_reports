@@ -58,11 +58,16 @@
         <label>Age</label><br>
         <input type="text" placeholder="50" name="age"><br>
         <label>Gender</label><br>
-        <input type="text" placeholder="female" name="gender"><br>
-        <label>Email</label><br>
+        <select name = "gender" id="">
+          <option selected disabled>---SELECT ONE---</option>
+          <option value="female">Female</option>
+          <option value="male">Male</option>
+        </select> <br>
+        <label>User Name</label><br>
         <select name = "UserId" id="">
+          <option selected disabled>---SELECT ONE---</option>
             <% data.forEach(el => { %>
-              <option value="<%= el.id %>">< role ></option>
+              <option value="<%= el.id %>"><%= el.userName %> </option>
               <% }) %>
           </select> <br>
         <div>

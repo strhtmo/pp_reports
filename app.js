@@ -34,7 +34,7 @@ app.use(function (req, res, next) {
 
 
 const isAdmin = function (req, res, next) {
-    if(req.session.email && req.session.role !== 'admin'){
+    if(req.session.email && req.session.role === 'user'){
         const error = 'You dont have permision!! Please login to Admin'
         res.redirect(`/login?error=${error}`)
     } else {
